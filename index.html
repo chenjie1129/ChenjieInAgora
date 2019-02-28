@@ -256,7 +256,8 @@ function join(channel_key) {
         camera = videoSource.value;
         microphone = audioSource.value;        
         // //创建音视频流对象
-     
+     if (document.getElementById("video").checked){alert("!!!");
+  
 
           localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId:microphone , video:true, screen: false,mirror: false});
 
@@ -339,7 +340,7 @@ function join(channel_key) {
         }, function (err) {
           console.log("getUserMedia failed", err.msg);
         });
-      
+      }  
 
     }, function(err) {
       console.log("Join channel failed111", err);
