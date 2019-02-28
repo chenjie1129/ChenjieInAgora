@@ -31,7 +31,7 @@
 
 <div id="div_join" class="panel panel-default" >
 <div class="panel-body" style=" text-align: center;">
-Appid: <input id="key" type="text" value="" size="36"></input>
+Appid: <input id="key1" type="text" value="" size="36"></input>
 
 <!--App Certificate: <input id="appc" type="text" value="" size="36"></input>
 Uid: <input id="uid" type="text" value="" size="36"></input>-->
@@ -41,8 +41,11 @@ Uid: <input id="uid" type="text" value="" size="36"></input>-->
   <option value ="Token">Token</option>
   <option value ="channelKey">channelKey</option>
 </select>
+<select id = "vid_appid" onchange="getAppId()">
+  <option value ="148542">148542</option>
+</select>
 <a id="channelKey1"  style="display: none" >App Certificate:</a>
-<input id="channelKey" type="text" value="945ccefdd55d4c25b64146927870f81b" style="display: none" size="40"></input>
+<input id="channelKey" type="text" value="" style="display: none" size="40"></input>
 Channel: <input id="channel" type="text" value="test" size="10"></input>
 <select id = "videoprofile">
   <option value ="180P">180P</option>
@@ -134,8 +137,17 @@ Host: <input id="video" type="checkbox" checked="checked"></input>
 <div id="agora_local4" style="float:left;width:200px;height:105px;display:inline-block;"></div>
 </div> -->
 <script language="javascript">
+  var key
 
+function getAppId(){
+  var select = document.getElementById('vid_appid');
+  console.log(select.selectedIndex);
+  if (select.options[select.selectedIndex].value == "148542"){
+    console.log(select.options[select.selectedIndex].value);
+    key = "724c0ce49bd945bdbbdcab243b9a10d1";
+  }
 
+}
 
 function select(){
   var select = document.getElementById('token');
@@ -178,6 +190,7 @@ var videoSelect = document.querySelector('select#videoSource');
 
 function join1(){
 
+
   if (token.value=="Token"){
     var appCer = channelKey.value;
     if (appCer!="") {
@@ -209,7 +222,7 @@ function join1(){
           });
 
     }else{
-      alert("请输入 AppCertificate!");
+      // alert("请输入 AppCertificate!");
     }
 
   }else{
@@ -219,13 +232,14 @@ function join1(){
 
 function join(channel_key) {
   //document.getElementById("join").disabled = true;
+  getAppId();
   document.getElementById("leave").disabled = false;
   //var channel_key = null ;
-  console.log("Init AgoraRTC client with vendor key: " + key.value);
+  console.log("Init AgoraRTC client with vendor key: " + key);
   client = AgoraRTC.createClient({mode: "live",codec:"h264"});
   
   //客户端初始化
-  client.init(key.value, function () {
+  client.init(key, function () {
     console.log("AgoraRTC client initialized");
 
     // client.configPublisher({
