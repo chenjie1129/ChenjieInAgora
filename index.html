@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<div id="div_device" class="panel panel-default" style="text-align: center;">
+<!-- <div id="div_device" class="panel panel-default" style="text-align: center;">
 
 <div class="select" >
 <label for="audioSource">Audio source: </label><select id="audioSource"></select>
@@ -25,7 +25,7 @@
 <div class="select" >
 <label for="videoSource">Video source: </label><select id="videoSource"></select>
 
-</div>
+</div> -->
 
 </div>
 
@@ -185,8 +185,8 @@ AgoraRTC.Logger.enableLogUpload();
 
 var client, localStream, camera, microphone,xxx;
 //var uid=Math.floor(Math.random()* 0xFFFFFFFF);
-var audioSelect = document.querySelector('select#audioSource');
-var videoSelect = document.querySelector('select#videoSource');
+// var audioSelect = document.querySelector('select#audioSource');
+// var videoSelect = document.querySelector('select#videoSource');
 
 function join1(){
 
@@ -253,8 +253,8 @@ function join(channel_key) {
     client.join(channel_key,channel.value,null, function(uid) {//
       console.log("User " + uid + " join channel successfully");
       xxx =uid;
-        camera = videoSource.value;
-        microphone = audioSource.value;        
+        // camera = videoSource.value;
+        // microphone = audioSource.value;        
         // //创建音视频流对象
      if (document.getElementById("video").checked){;
   
@@ -878,38 +878,38 @@ function test2(){
 }
 
 
-function getDevices() {
-  AgoraRTC.getDevices(function (devices) {
-    for (var i = 0; i !== devices.length; ++i) {
+// function getDevices() {
+//   AgoraRTC.getDevices(function (devices) {
+//     for (var i = 0; i !== devices.length; ++i) {
       
       
-      var device = devices[i];
-      //console.log(devices[i]);
-      var option = document.createElement('option');
-      option.value = device.deviceId;
-      if (device.kind === 'audioinput') {
-        option.text = device.label || 'microphone ' + (audioSelect.length + 1);
-        audioSelect.appendChild(option);
-        console.log('Some other kind of source/device: ', device);
-      } else if (device.kind === 'videoinput') {
-        option.text = device.label || 'camera ' + (videoSelect.length + 1);
-        videoSelect.appendChild(option);
-        console.log('Some other kind of source/device: ', device);
-      } else {
-         console.log('Some other kind of source/device: ', device);
-      }
-    // if(devices[i]['label'] != "ManyCam Virtual Microphone (Virtual)"&&devices[i]['label']!= "ManyCam Virtual Webcam"){
-    // }else{
-    //   console.log("虚拟设备");
-    // }
-    }
-  });
+//       var device = devices[i];
+//       //console.log(devices[i]);
+//       var option = document.createElement('option');
+//       option.value = device.deviceId;
+//       if (device.kind === 'audioinput') {
+//         option.text = device.label || 'microphone ' + (audioSelect.length + 1);
+//         audioSelect.appendChild(option);
+//         console.log('Some other kind of source/device: ', device);
+//       } else if (device.kind === 'videoinput') {
+//         option.text = device.label || 'camera ' + (videoSelect.length + 1);
+//         videoSelect.appendChild(option);
+//         console.log('Some other kind of source/device: ', device);
+//       } else {
+//          console.log('Some other kind of source/device: ', device);
+//       }
+//     // if(devices[i]['label'] != "ManyCam Virtual Microphone (Virtual)"&&devices[i]['label']!= "ManyCam Virtual Webcam"){
+//     // }else{
+//     //   console.log("虚拟设备");
+//     // }
+//     }
+//   });
 
-}
+// }
 
 //audioSelect.onchange = getDevices;
 //videoSelect.onchange = getDevices;
-getDevices();
+// getDevices();
 
 
 </script>
